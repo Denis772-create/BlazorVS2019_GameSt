@@ -1,0 +1,30 @@
+﻿@if (ListOfItems is null)
+{
+    <div class="row text-center">
+        <div class="col">
+            <img src="images/1060.jpg" height="500"/>
+        </div>
+    </div>
+}
+else if (ListOfItems.Count ==0 )
+{
+    <div class="row text-center">
+        <div class="col">
+            <img src="images/doodle-champion-island-games-begin-6753651837108462.2-2xa.gif" height="500"/>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in ListOfItems)
+        {
+            <IndividualGame Game="item"></IndividualGame>
+
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public List<GameModel> ListOfItems { get; set; }
+}

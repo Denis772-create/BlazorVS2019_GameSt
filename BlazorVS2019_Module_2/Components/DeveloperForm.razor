@@ -1,0 +1,32 @@
+﻿<EditForm Model="Developer" OnValidSubmit="OnValidSubmitHandler">
+    <div class="form-group">
+        <label>Developer Name:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="Developer.Name"></InputText>
+            <ValidationMessage For="(()=> Developer.Name)"></ValidationMessage>
+        </div>
+    </div>
+    
+    <InputImage Lable="Image" OnImageFileSelector="ImageFileSelectorHandler" ImageUrl="@imageUrl"></InputImage>
+    <button type="submit" class="btn btn-primary">Create New Studio</button>
+</EditForm>
+
+@code {
+    string imageUrl;
+    [Parameter] public GameDeveloper Developer { get; set; }
+    [Parameter] public EventCallback OnValidSubmitHandler { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        imageUrl = Developer.Image;
+        Developer.Image = null;
+    }
+
+    void ImageFileSelectorHandler(string imageBase64)
+    {
+        Developer.Image = imageBase64;
+        imageUrl = null;
+    }
+
+}

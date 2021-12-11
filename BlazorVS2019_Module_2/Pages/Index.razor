@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject IRepository repository
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<GameList ListOfItems="ListOGameModels"></GameList>
+
+@code
+{
+    public List<GameModel> ListOGameModels = new List<GameModel>();
+
+    protected override void OnInitialized()
+    {
+        ListOGameModels = repository.GetAllGames();     
+    }
+}

@@ -1,0 +1,32 @@
+﻿@page "/studio/edit/{StudioId:int}"
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-info">Edit Developer Studio</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        @if (Developer != null)
+        {
+            <DeveloperForm Developer="Developer" OnValidSubmitHandler="Edit"></DeveloperForm>
+
+        }
+    </div>
+    <div class="col-6">
+
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public int StudioId { get; set; }
+
+    GameDeveloper Developer;
+
+    void Edit()
+    {
+
+    }
+}

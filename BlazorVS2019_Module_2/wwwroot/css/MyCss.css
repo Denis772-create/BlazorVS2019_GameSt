@@ -1,0 +1,24 @@
+﻿.game-name 
+{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: dodgerblue;
+    background-color: #e9e6ff;
+    border-radius: 5px 5px 0 0;
+}
+
+
+.hrfix {
+    margin: 5px 0 !important;
+}
+
+.game-image {
+    max-width: 200px;
+    max-height: 250px;
+}
+
+.game-card-footer {
+    background-color: #e9e6ff;
+    border-radius: 0 0 5px 5px;
+}
