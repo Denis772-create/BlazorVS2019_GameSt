@@ -21,4 +21,17 @@
 .game-card-footer {
     background-color: #e9e6ff;
     border-radius: 0 0 5px 5px;
+
+}
+
+.form-markdown {
+    width: 500px;
+    height: 500px;
+    margin-right: 15px;
+}
+
+.container-markdown .form-markdown {
+    border: 1px dashed #000;
+    width: 500px;
+    height: 500px;
 }

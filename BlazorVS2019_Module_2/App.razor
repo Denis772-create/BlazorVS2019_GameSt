@@ -1,4 +1,6 @@
-<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
+@inject NavigationManager Navigation
+
+<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true" OnNavigateAsync="NavAsync">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
@@ -8,3 +10,13 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+
+@code
+{
+    private async Task NavAsync(NavigationContext d)
+    {
+        Console.WriteLine(Navigation.ToAbsoluteUri(d.Path).AbsoluteUri);
+
+    }
+}

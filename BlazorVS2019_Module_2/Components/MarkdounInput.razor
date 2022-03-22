@@ -1,0 +1,24 @@
+﻿@using System.Linq.Expressions
+@inherits InputTextArea
+@typeparam TValue
+<div class="row">
+    <div class="col">
+        <label>@Lable</label>
+        <div>
+            @*<InputTextArea @bind-Value="CurrentValue" />*@
+            <textarea @bind-Value="CurrentValue" @bind-Value:event="oninput"></textarea>
+            <ValidationMessage For="OnFor"></ValidationMessage>
+        </div>
+    </div>
+    <div class="col">
+        <label>@Lable (Preview)</label>
+        <div class="container-markdown">
+            <MarkdownRender MarkdownContent="@CurrentValue"></MarkdownRender>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Lable { get; set; }
+    [Parameter] public Expression<Func<TValue>> OnFor { get; set; }
+}

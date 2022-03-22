@@ -24,18 +24,32 @@ namespace BlazorVS2019_Module_2
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor(options =>
+            {
+                options.DetailedErrors = false;                                      // Отправка подробных сообщений об исключениях в JavaScript
+                options.DisconnectedCircuitMaxRetained = 100;                        // Максимальное число отключенных каналов, которые сервер удерживает в памяти за один раз.
+                options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(3);// Максимальное время, в течение которого отключенный канал удерживается в памяти,
+                options.MaxBufferedUnacknowledgedRenderBatches = 10;                 // Максимальное число неподтвержденных пакетов преобразования для просмотра
+                options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);       // Максимальное время ожидания сервера до истечения времени ожидания асинхронного вызова функции JavaScript.
+            })
+                .AddHubOptions(options =>
+                {
+                    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
+                    options.EnableDetailedErrors = false;
+                    options.HandshakeTimeout = TimeSpan.FromSeconds(15);
+                    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+                    options.MaximumParallelInvocationsPerClient = 1;
+                    options.MaximumReceiveMessageSize = 32 * 1024;
+                    options.StreamBufferCapacity = 10; 
+                });
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IRepository, GameRepository>();
             services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

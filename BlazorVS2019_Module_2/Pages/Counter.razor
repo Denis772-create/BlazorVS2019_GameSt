@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@using Microsoft.Extensions.DependencyInjection
+@inherits OwningComponentBase 
 
 <h1>Counter</h1>
 
@@ -8,6 +10,14 @@
 
 @code {
     private int currentCount = 0;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        var JS = ScopedServices.GetRequiredService<IJSRuntime>();
+    }
 
     private void IncrementCount()
     {

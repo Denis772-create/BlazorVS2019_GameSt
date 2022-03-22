@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.26.0" />
     <PackageReference Include="Tewr.Blazor.FileReader" Version="3.2.0.21211" />
   </ItemGroup>
 

@@ -11,6 +11,7 @@ namespace BlazorVS2019_Module_2.Models
         public int Id { get; set; }
         public  string Name { get; set; }
         public  string Image { get; set; }
+        public  string StiduoDescription { get; set; }
 
     }
 }
